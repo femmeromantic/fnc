@@ -1,14 +1,14 @@
 use serde::Deserialize;
+use tokio::signal;
 use std::collections::HashMap;
 use std::sync::{Arc, Mutex};
 use zbus::zvariant::{DeserializeDict, Type};
 use zbus::{connection, interface, Connection, DBusError};
 
 #[tokio::main(flavor = "current_thread")]
-async fn main() -> zbus::Result<()> {
-    let _server = start_server(Arc::new(Mutex::new(HashMap::<u32, Notification>::new()))).await?;
-    loop {
-    }
+async fn main() {
+    let _server = start_server(Arc::new(Mutex::new(HashMap::<u32, Notification>::new()))).await;
+    signal::ctrl_c().await.expect("Exiting");
 }
 
 struct Notifications {
@@ -50,7 +50,7 @@ pub(crate) async fn start_server(
     notification_map: Arc<Mutex<HashMap<u32, Notification>>>,
 ) -> zbus::Result<Connection> {
     let notification = Notifications {
-        notification_map: notification_map.clone(),
+        notification_map,
     };
     let connection = connection::Builder::session()?
         .name("org.freedesktop.Notifications")?

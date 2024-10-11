@@ -6,6 +6,6 @@ authors = ["Winter", "Kai"]
 edition = "2021"
 
 [dependencies]
-zbus = "4.4.0"
-tokio = { version = "1.40.0", features = ["rt", "rt-multi-thread", "macros"] }
-serde = { version = "1.0.210", features = ["derive"] }
+zbus = "4.4"
+tokio = { version = "1.40", features = ["rt", "rt-multi-thread", "macros", "signal"] }
+serde = { version = "1.0", features = ["derive"] }
