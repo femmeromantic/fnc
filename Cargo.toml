@@ -1,0 +1,11 @@
+[package]
+name = "fnc"
+description = "A simple notification daemon that doesn't do anything."
+version = "0.1.0"
+authors = ["Winter", "Kai"]
+edition = "2021"
+
+[dependencies]
+zbus = "4.4.0"
+tokio = { version = "1.40.0", features = ["rt", "rt-multi-thread", "macros"] }
+serde = { version = "1.0.210", features = ["derive"] }
