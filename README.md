@@ -16,4 +16,4 @@ Some applications will crash if you do not use a notification daemon.
 
 ---
 
-fnc is licensed under the [Queer Code License v1.0](LICENSE).
+fnc is licensed under [unlicense](LICENSE).
