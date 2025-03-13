@@ -5,7 +5,7 @@ Fuck Notification Center, a simple notification daemon that doesn't do anything.
 
 ## Installation
 ```
-cargo install --git https://github.com/femmeromantic/fnc --locked fnc
+cargo install --git https://github.com/femmeromantic/fnc fnc
 ```
 
 ## What does it do?
