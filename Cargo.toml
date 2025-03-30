@@ -1,11 +1,11 @@
 [package]
-name = "fnc"
-description = "A simple notification daemon that doesn't do anything."
-version = "0.1.0"
-authors = ["Winter", "Kai"]
+name = "libfuckyou"
+description = "A notification daemon that doesn't do anything."
+version = "0.1.1"
+authors = ["Silver"]
 edition = "2021"
 
 [dependencies]
-zbus = "4.4"
+zbus = "5.5"
 tokio = { version = "1.40", features = ["rt", "rt-multi-thread", "macros", "signal"] }
 serde = { version = "1.0", features = ["derive"] }

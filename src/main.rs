@@ -12,6 +12,7 @@ async fn main() {
 }
 
 struct Notifications {
+    next_id: u32,
     notification_map: Arc<Mutex<HashMap<u32, Notification>>>,
 }
 
@@ -20,7 +21,8 @@ impl Notifications {
     async fn get_capabilities(&self) -> Box<[String]> {
         Box::new([
             "action-icons".to_string(), "actions".to_string(),
-            "body".to_string(), "body-hyperlinks".to_string(), "body-markup".to_string(),
+            "body".to_string(), "body-hyperlinks".to_string(),
+            "body-images".to_string(), "body-markup".to_string(),
             "icon-multi".to_string(), "icon-static".to_string(),
             "persistence".to_string(), "sound".to_string()
         ])
@@ -28,21 +30,25 @@ impl Notifications {
 
     async fn get_server_information(&self) -> (String, String, String, String) {
         (
-            "fnc".to_string(),
+            "libfuckyou".to_string(),
             "femmeromantic".to_string(),
-            "0.1.0".to_string(),
-            "1.2".to_string(),
+            "0.1.1".to_string(),
+            "1.3".to_string(),
         )
     }
 
-    async fn notify(&mut self, _notification: Notification) -> u32 { 1 }
+    async fn notify(&mut self, notification: Notification) -> u32 {
+        if notification.replaces_id != 0 {
+            notification.replaces_id
+        } else {
+            self.next_id += 1;
+            self.next_id
+        }
+    }
 
     async fn close_notification(&mut self, _id: u32) -> Result<(), Error> { Ok(()) }
-
     async fn notification_closed(&mut self, _id: u32, _reason: u32) {}
-
     async fn action_invoked(&mut self, _id: u32, _action_key: String) {}
-
     async fn activation_token(&mut self, _id: u32, _activation_token: u32) {}
 }
 
@@ -50,6 +56,7 @@ pub(crate) async fn start_server(
     notification_map: Arc<Mutex<HashMap<u32, Notification>>>,
 ) -> zbus::Result<Connection> {
     let notification = Notifications {
+        next_id: 1,
         notification_map,
     };
     let connection = connection::Builder::session()?

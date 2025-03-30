@@ -1,18 +1,15 @@
-# fnc
-Fuck Notification Center, a simple notification daemon that doesn't do anything.
+# libfuckyou
+A notification daemon that doesn't do anything.
 
 ---
 
 ## Installation
 ```
-cargo install --git https://github.com/femmeromantic/fnc fnc
+cargo install --git https://github.com/femmeromantic/libfuckyou libfuckyou
 ```
 
-## What does it do?
-Nothing. Using fnc there is no way to read your notifications.
-
 ## Why?
-Some applications will crash if you do not use a notification daemon.
+I don't like notifications, however some applications (namely, discord) will crash if you do not use a notification daemon.
 
 ---
 
